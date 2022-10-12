@@ -1,0 +1,130 @@
+{
+  "name": "popitalk-server-api",
+  "version": "1.0.0",
+  "description": "Popitalk API Server",
+  "main": "index.js",
+  "engines": {
+    "node": "12.13.0"
+  },
+  "scripts": {
+    "start": "node ./src/index.js",
+    "devserver": "cross-env NODE_ENV=development nodemon ./src/index.js",
+    "production": "cross-env NODE_ENV=production node ./src/index.js",
+    "prettier": "prettier \"./src/**/*.+(js|json|yml|yaml|ts|tsx|md|mdx|graphql)\"",
+    "unprettified": "npm run prettier -- --list-different",
+    "format": "npm run prettier -- --write",
+    "lint": "eslint ./src/ -c ./.eslintrc --ext js",
+    "fix": "eslint ./src/ --fix",
+    "validate": "run-p lint unprettified",
+    "test": "cross-env NODE_ENV=testing jest --runInBand --detectOpenHandles",
+    "test-watch": "cross-env NODE_ENV=testing jest --watch --runInBand",
+    "test-watchall": "cross-env NODE_ENV=testing jest --watchAll --runInBand",
+    "coverage": "cross-env NODE_ENV=testing jest --coverage",
+    "migrate-create": "node ./tools/migrate.js create",
+    "migrate-list": "node ./tools/migrate.js list",
+    "migrate-up": "db-migrate up",
+    "migrate-down": "db-migrate down",
+    "mr": "db-migrate reset",
+    "migrate-reset": "run-s mr migrate-up",
+    "db-create": "node ./tools/createDb.js",
+    "db-drop": "node ./tools/dropDb.js",
+    "db-seed": "node ./tools/seedDb.js",
+    "redis-flush": "redis-cli --scan --pattern 'playnows*' | xargs redis-cli unlink",
+    "db-reset": "run-s migrate-reset redis-flush db-seed"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "roots": [
+      "<rootDir>/__tests__"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./src/**/*.{js}": [
+      "npm run format",
+      "npm run fix",
+      "cross-env NODE_ENV=testing jest --runInBand --findRelatedTests",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@hapi/basic": "^6.0.0",
+    "@hapi/boom": "^9.1.0",
+    "@hapi/catbox": "^11.1.1",
+    "@hapi/catbox-redis": "^5.0.5",
+    "@hapi/crumb": "^8.0.1",
+    "@hapi/glue": "^7.0.0",
+    "@hapi/hapi": "^19.2.0",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/vision": "^6.0.1",
+    "@hapi/yar": "^10.1.1",
+    "@sentry/node": "^5.24.2",
+    "aws-sdk": "^2.761.0",
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.5",
+    "bufferutil": "^4.0.1",
+    "bull": "^3.18.0",
+    "chalk": "^4.1.0",
+    "date-fns": "^2.16.1",
+    "db-migrate": "^0.11.8",
+    "db-migrate-pg": "^1.1.0",
+    "dotenv": "^8.1.0",
+    "faker": "^4.1.0",
+    "fast-redact": "^2.0.0",
+    "figlet": "^1.5.0",
+    "file-type": "^12.4.0",
+    "google-auth-library": "^6.1.0",
+    "googleapis": "^52.1.0",
+    "hapi-swagger": "^13.1.0",
+    "ioredis": "^4.16.0",
+    "knex": "^0.20.12",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.0",
+    "nodemailer": "^6.4.11",
+    "pg-promise": "^10.6.1",
+    "promise.allsettled": "^1.0.2",
+    "utf-8-validate": "^5.0.2",
+    "uuid": "^3.4.0",
+    "youtube-duration": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/hapi__hapi": "^19.0.4",
+    "@types/hapi__inert": "^5.2.1",
+    "@types/hapi__joi": "^16.0.12",
+    "@types/hapi__vision": "^5.5.2",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^13.13.21",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^3.1.0",
+    "jest": "^26.4.2",
+    "jest-watch-typeahead": "^0.6.1",
+    "lint-staged": "^9.4.3",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1"
+  }
+}

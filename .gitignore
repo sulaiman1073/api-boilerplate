@@ -1,0 +1,19 @@
+# Project specific
+/node_modules/
+/coverage/
+/benchmarks/results/
+dump.rdb
+.env
+
+# Other
+*.log
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.idea
+*.iml
+.vscode
+*.swp
+*.swo
+*~
+*.pyc
