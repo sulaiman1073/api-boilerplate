@@ -3,7 +3,7 @@
 ## Info
 `@sulaiman1073/api-boilerplate` is the primary api for interacting with: 
 
-* [`@sulaiman1073/api-boilerplate`](https://github.com/sulaiman1073/client-boilerplate)
+* [`@sulaiman1073/client-boilerplate`](https://github.com/sulaiman1073/client-boilerplate)
 * [`@sulaiman1073/ws-boilerplate`](https://github.com/sulaiman1073/ws-boilerplate)
 
 You can watch a demo [here](https://placeholder.youtube.com).
