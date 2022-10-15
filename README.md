@@ -1,22 +1,22 @@
-# popitalk-server-api
+# api-boilerplate
 
 ## Info
-`@popitalk/popitalk-server-api` is the primary api for interacting with: 
+`@sulaiman1073/api-boilerplate` is the primary api for interacting with: 
 
-* [`@popitalk/popitalk-client`](https://github.com/Popitalk/popitalk-client)
-* [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
+* [`@sulaiman1073/api-boilerplate`](https://github.com/sulaiman1073/client-boilerplate)
+* [`@sulaiman1073/ws-boilerplate`](https://github.com/sulaiman1073/ws-boilerplate)
 
 You can watch a demo [here](https://placeholder.youtube.com).
 
 ## Codebase
-The codebase for `popitalk-server-api` is written in Node.js with [Hapi](https://hapi.dev/), PostgreSQL and Redis.
+The codebase for `api-boilerplate` is written in Node.js with [Hapi](https://hapi.dev/), PostgreSQL and Redis.
 
 ### First time setup
 
 1. Clone the repository
 
 ```
-git clone https://github.com/Popitalk/popitalk-server-api
+git clone https://github.com/sulaiman1073/api-boilerplate
 ```
 
 2. The API setup requires PostgreSQL & Redis
@@ -30,10 +30,10 @@ git clone https://github.com/Popitalk/popitalk-server-api
 3. Next, create a database:
 
 ```
-CREATE DATABASE playnows;
-CREATE USER playnows WITH ENCRYPTED PASSWORD 'playnows123';
-GRANT ALL PRIVILEGES ON DATABASE playnows TO playnows;
-ALTER ROLE playnows superuser;
+CREATE DATABASE apidb;
+CREATE USER apidb WITH ENCRYPTED PASSWORD 'apidb123';
+GRANT ALL PRIVILEGES ON DATABASE apidb TO apidb;
+ALTER ROLE apidb superuser;
 ```
 
 4. Finally to run the repository locally:
@@ -50,14 +50,14 @@ npm run devserver
  - Ensure that `.env.example` is either copied and renamed to `.env`, or is simply renamed to `.env`.
 
 #### Installation
-*Important* The following services need to be set up alongside `@popitalk/popitalk-server-api` for the site to run on your local machine:
+*Important* The following services need to be set up alongside `@sulaiman1073/api-boilerplate` for the site to run on your local machine:
 
-* [`@popitalk/popitalk-client`](https://github.com/Popitalk/popitalk-client)
-* [`@popitalk/popitalk-server-ws`](https://github.com/Popitalk/popitalk-server-ws)
+* [`@sulaiman1073/client-boilerplate`](https://github.com/sulaiman1073/client-boilerplate)
+* [`@sulaiman1073/ws-boilerplate`](https://github.com/sulaiman1073/ws-boilerplate)
 
 ### Folder Structure
 ```
-popitalk/popitalk-server-ws/
+sulaiman1073/ws-boilerplate/
 ├── controllers # Placeholder
 ├── helpers # placeholder explanation
 ├── Placeholder # placeholder explanation

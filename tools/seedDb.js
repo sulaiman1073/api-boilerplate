@@ -38,78 +38,78 @@ async function seedDb() {
 
     console.log("Seeded users");
 
-    const andrewInfo = {
-      firstName: "Andrew",
-      lastName: "Jang",
-      username: "andrewdhjang",
+    const user1Info = {
+      firstName: "us",
+      lastName: "er",
+      username: "user1",
       dateOfBirth: format(
         faker.date.between("1950-01-01", "2000-01-01"),
         "yyyy-MM-dd"
       ),
       avatar: faker.image.avatar(),
-      email: "andrewdhjang@gmail.com",
+      email: "user1@gmail.com",
       password
     };
 
-    const nesterInfo = {
-      firstName: "nes",
-      lastName: "ter",
-      username: "nest3r",
+    const user2Info = {
+      firstName: "us",
+      lastName: "er",
+      username: "user2",
       dateOfBirth: format(
         faker.date.between("1950-01-01", "2000-01-01"),
         "yyyy-MM-dd"
       ),
       avatar: faker.image.avatar(),
-      email: "nest9876@gmail.com",
+      email: "user2@gmail.com",
       password
     };
 
-    const silentFuzzleInfo = {
-      firstName: "silent",
-      lastName: "fuzzle",
-      username: "silentfuzzle",
+    const user3Info = {
+      firstName: "us",
+      lastName: "er",
+      username: "user3",
       dateOfBirth: format(
         faker.date.between("1950-01-01", "2000-01-01"),
         "yyyy-MM-dd"
       ),
       avatar: faker.image.avatar(),
-      email: "silentfuzzle123@gmail.com",
+      email: "user3@gmail.com",
       password
     };
 
-    const sandPillInfo = {
-      firstName: "sand",
-      lastName: "pill",
-      username: "sandPill",
+    const user4Info = {
+      firstName: "us",
+      lastName: "er",
+      username: "user4",
       dateOfBirth: format(
         faker.date.between("1950-01-01", "2000-01-01"),
         "yyyy-MM-dd"
       ),
       avatar: faker.image.avatar(),
-      email: "sandPill123@gmail.com",
+      email: "user4@gmail.com",
       password
     };
 
-    const andregammaInfo = {
-      firstName: "andre",
-      lastName: "gamma",
-      username: "andregamma",
+    const user5Info = {
+      firstName: "us",
+      lastName: "er",
+      username: "user5",
       dateOfBirth: format(
         faker.date.between("1950-01-01", "2000-01-01"),
         "yyyy-MM-dd"
       ),
       avatar: faker.image.avatar(),
-      email: "andregamma123@gmail.com",
+      email: "user5@gmail.com",
       password
     };
 
     let seededDevs = await allSettled(
       [
-        andrewInfo,
-        nesterInfo,
-        sandPillInfo,
-        silentFuzzleInfo,
-        andregammaInfo
+        user1Info,
+        user2Info,
+        user3Info,
+        user4Info,
+        user5Info
       ].map(user => UserService.addUser(user))
     );
 
@@ -118,94 +118,94 @@ async function seedDb() {
       .map(su => su.value);
 
     const devIds = seededDevs.map(su => su.id);
-    const andrewId = seededDevs.filter(su => su.username === "andrewdhjang")[0]
+    const user1Id = seededDevs.filter(su => su.username === "user1")[0]
       .id;
-    const nesterId = seededDevs.filter(su => su.username === "nest3r")[0].id;
-    const sandPillId = seededDevs.filter(su => su.username === "sandPill")[0]
+    const user2Id = seededDevs.filter(su => su.username === "user2")[0].id;
+    const user3Id = seededDevs.filter(su => su.username === "user3")[0]
       .id;
-    const silentFuzzleId = seededDevs.filter(
-      su => su.username === "silentfuzzle"
+    const user4Id = seededDevs.filter(
+      su => su.username === "user4"
     )[0].id;
-    const andregammaId = seededDevs.filter(
-      su => su.username === "andregamma"
+    const user6Id = seededDevs.filter(
+      su => su.username === "user5"
     )[0].id;
 
-    const andrewFriendsIds = [
+    const user1Ids = [
       ...sampleSize(seededUsers, 8).map(u => u.id),
-      ...devIds.filter(id => id !== andrewId)
+      ...devIds.filter(id => id !== user1Id)
     ];
-    const nesterFriendsIds = [
+    const user2Ids = [
       ...sampleSize(seededUsers, 8).map(u => u.id),
-      ...devIds.filter(id => id !== nesterId)
+      ...devIds.filter(id => id !== user2Id)
     ];
-    const sandPillFriendsIds = [
+    const user3Ids = [
       ...sampleSize(seededUsers, 8).map(u => u.id),
-      ...devIds.filter(id => id !== sandPillId)
+      ...devIds.filter(id => id !== user3Id)
     ];
-    const silentFuzzleFriendsIds = [
+    const user4Ids = [
       ...sampleSize(seededUsers, 8).map(u => u.id),
-      ...devIds.filter(id => id !== silentFuzzleId)
+      ...devIds.filter(id => id !== user4Id)
     ];
-    const andregammaFriendsIds = [
+    const user5Ids = [
       ...sampleSize(seededUsers, 8).map(u => u.id),
-      ...devIds.filter(id => id !== andregammaId)
+      ...devIds.filter(id => id !== user6Id)
     ];
 
-    for await (const fid of andrewFriendsIds) {
+    for await (const fid of user1Ids) {
       try {
-        await UserService.addFriendRequest({ fromUser: andrewId, toUser: fid });
+        await UserService.addFriendRequest({ fromUser: user1Id, toUser: fid });
         await UserService.addFriend({
           userId1: fid,
-          userId2: andrewId
+          userId2: user1Id
         });
       } catch (error) {}
     }
 
-    for await (const fid of nesterFriendsIds) {
+    for await (const fid of user2Ids) {
       try {
-        await UserService.addFriendRequest({ fromUser: nesterId, toUser: fid });
+        await UserService.addFriendRequest({ fromUser: user2Id, toUser: fid });
         await UserService.addFriend({
           userId1: fid,
-          userId2: nesterId
+          userId2: user2Id
         });
       } catch (error) {}
     }
 
-    for await (const fid of sandPillFriendsIds) {
+    for await (const fid of user3Ids) {
       try {
         await UserService.addFriendRequest({
-          fromUser: sandPillId,
+          fromUser: user3Id,
           toUser: fid
         });
         await UserService.addFriend({
           userId1: fid,
-          userId2: sandPillId
+          userId2: user3Id
         });
       } catch (error) {}
     }
 
-    for await (const fid of silentFuzzleFriendsIds) {
+    for await (const fid of user4Ids) {
       try {
         await UserService.addFriendRequest({
-          fromUser: silentFuzzleId,
+          fromUser: user4Id,
           toUser: fid
         });
         await UserService.addFriend({
           userId1: fid,
-          userId2: silentFuzzleId
+          userId2: user4Id
         });
       } catch (error) {}
     }
 
-    for await (const fid of andregammaFriendsIds) {
+    for await (const fid of user5Ids) {
       try {
         await UserService.addFriendRequest({
-          fromUser: andregammaId,
+          fromUser: user6Id,
           toUser: fid
         });
         await UserService.addFriend({
           userId1: fid,
-          userId2: andregammaId
+          userId2: user6Id
         });
       } catch (error) {}
     }
@@ -213,8 +213,8 @@ async function seedDb() {
     console.log("Seeded friends");
 
     await ChannelService.addRoom({
-      userId: andrewId,
-      userIds: [nesterId, sandPillId, silentFuzzleId, andregammaId]
+      userId: user1Id,
+      userIds: [user2Id, user3Id, user4Id, user5Id]
     });
 
     console.log("Seeded groups");

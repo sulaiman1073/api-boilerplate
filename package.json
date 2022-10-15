@@ -1,7 +1,7 @@
 {
-  "name": "popitalk-server-api",
+  "name": "api-boilerplate",
   "version": "1.0.0",
-  "description": "Popitalk API Server",
+  "description": "API Boilerplate",
   "main": "index.js",
   "engines": {
     "node": "12.13.0"
